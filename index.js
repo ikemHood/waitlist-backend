@@ -20,9 +20,10 @@ app.use(cors(
 // Replace with your actual connection string
 const mongoConnectionString = process.env.MONGODB_URI;
 
-  const conn = await mongoose.connect(mongoConnectionString);
+  mongoose.connect(mongoConnectionString).then((conn) =>{
   mongoose.set("strictQuery", false);
   console.log(`MongoDB Connected: ${conn.connection.host}`);
+})
 
 const emailSchema = new mongoose.Schema({
     email: {
