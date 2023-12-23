@@ -20,7 +20,7 @@ Add an email address to the waitlist.
 
 #### Request
 
-```
+```json
 {
   "email": "user@example.com"
 }
@@ -30,7 +30,7 @@ Add an email address to the waitlist.
 
 - `200 OK` on success:
 
-```
+```json
 {
   "message": "Email added to the waitlist."
 }
@@ -38,7 +38,7 @@ Add an email address to the waitlist.
 
 - `400 Bad Request` if the email is invalid or missing:
 
-```
+```json
 {
   "message": "Email address is required."
 }
@@ -46,7 +46,7 @@ Add an email address to the waitlist.
 
 - `500 Internal Server Error` if there's a server error:
 
-```
+```json
 {
   "message": "Error message"
 }
@@ -67,7 +67,7 @@ Authorization: Bearer YourSecretBearerToken
 
 - `200 OK` on success:
 
-```
+```json
 [
   "user1@example.com",
   "user2@example.com",
