@@ -6,7 +6,16 @@ require("dotenv").config();
 
 const app = express();
 app.use(bodyParser.json());
-app.use(cors());
+app.use(cors(
+    {
+      origin: [
+        "*",
+      ],
+      methods: ["GET", "POST", "OPTIONS"],
+      allowedHeaders: ["Content-Type", "Authorization"],
+      credentials: true,
+    }
+));
 
 // Replace with your actual connection string
 const mongoConnectionString = process.env.MONGODB_URI;
