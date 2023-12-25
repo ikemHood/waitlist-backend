@@ -6,23 +6,22 @@ require("dotenv").config();
 
 const app = express();
 app.use(bodyParser.json());
-app.use(cors(
-    {
-      origin: [
-        "*",
-      ],
-      methods: ["GET", "POST", "OPTIONS"],
-      allowedHeaders: ["Content-Type", "Authorization"],
-      credentials: true,
-    }
-));
+
+const corsOptions = {
+    origin: '*', 
+    methods: 'GET,POST,OPTIONS',
+    allowedHeaders: 'Content-Type,Authorization',
+    // credentials: true // Enable credentials
+};
+
+app.use(cors(corsOptions));
 
 // Replace with your actual connection string
 const mongoConnectionString = process.env.MONGODB_URI;
 
-  mongoose.connect(mongoConnectionString).then((conn) =>{
-  mongoose.set("strictQuery", false);
-  console.log(`MongoDB Connected: ${conn.connection.host}`);
+mongoose.connect(mongoConnectionString).then((conn) => {
+    mongoose.set("strictQuery", false);
+    console.log(`MongoDB Connected: ${conn.connection.host}`);
 })
 
 const emailSchema = new mongoose.Schema({
