@@ -56,7 +56,12 @@ app.post('/joinwaitlist', async (req, res) => {
         await newEmail.save();
         res.status(200).send({ message: 'Email added to the waitlist.' });
     } catch (error) {
-        res.status(500).send({ message: error.message });
+        if (error.code === 11000) {
+            res.status(409).send({ message: 'This email is already on the waitlist.' });
+        } else {
+            res.status(500).send({ message: 'An error occurred while processing your request.' });
+        }
+        // res.status(500).send({ message: error.message });
     }
 });
 
